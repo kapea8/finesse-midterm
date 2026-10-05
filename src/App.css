@@ -1,0 +1,179 @@
+/* Main dashboard */
+
+.dashboard {
+  width: 100%;
+  min-height: 100vh;
+  padding: 35px 50px;
+}
+
+
+/* Dashboard title */
+
+.dashboard h1 {
+  text-align: center;
+  font-size: 36px;
+  margin: 0 0 35px;
+  color: #1f2937;
+}
+
+
+/* Model Status */
+.model-status {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.model-status h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #1f2937;
+}
+
+.model-status p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.status {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Metric cards */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.metric-card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.metric-value {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+}
+
+
+/* Chart containers */
+
+.chart-container {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 25px 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+
+/* Chart titles */
+
+.chart-container h2 {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: left;
+}
+
+/* Anomaly detection */
+
+.anomaly-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px 25px;
+  margin-bottom: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.anomaly-card h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: #1f2937;
+}
+
+.anomaly-message {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.anomaly-details {
+  margin: 0;
+  color: #6b7280;
+}
+
+.anomaly-status {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+.normal .anomaly-status {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.anomaly .anomaly-status {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+
+/* Make dashboard responsive */
+
+@media (max-width: 900px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard {
+    padding: 25px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard {
+    padding: 20px;
+  }
+}
