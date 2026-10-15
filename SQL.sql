@@ -1,0 +1,8 @@
+DATABASE_URL=mysql+pymysql://FINESSE-USR:bc1hw1Tjp1X@127.0.0.1:3306/ml_metrics
+
+INGEST_API_KEY='F!N3S5E'
+
+CORS_ORIGINS=http://localhost:5173
+HOST=127.0.0.1
+PORT=5000
+FLASK_DEBUG=true
