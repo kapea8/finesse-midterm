@@ -13,7 +13,7 @@ api = Blueprint("api", __name__, url_prefix="/api")
 
 BACKEND_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BACKEND_DIR.parent
-ML_DIR = PROJECT_DIR / "model"
+ML_DIR = PROJECT_DIR / "ml"
 
 if not ML_DIR.is_dir():
     raise RuntimeError(f"ML_DIR does not exist: {ML_DIR}")
