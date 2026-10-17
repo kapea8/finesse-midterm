@@ -1,9 +1,10 @@
 Flask==3.1.0
 Flask-Cors==5.0.0
+Flask-SocketIO
 python-dotenv==1.0.1
 mysql-connector-python
 requests
-tensorflow==2.21.0
+tensorflow
 numpy
 pandas
 scikit-learn
