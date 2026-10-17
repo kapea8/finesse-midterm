@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS metrics (
     id INT AUTO_INCREMENT PRIMARY KEY,
     run_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
-    value DECIMAL(10,4) NOT NULL,
+    value DECIMAL(20,10) NOT NULL,
     recorded_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_metrics_run
         FOREIGN KEY (run_id) REFERENCES runs(id)
