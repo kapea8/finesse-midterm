@@ -19,8 +19,8 @@ feature_columns = joblib.load(ML_DIR / "aapl_feature_columns.joblib")
 threshold = joblib.load(ML_DIR / "aapl_threshold.joblib")
 
 # 2. Get your Finnhub API key from an environment variable
-BACKEND_ENV = Path(__file__).resolve().parent.parent / "backend" / ".env"
-load_dotenv(BACKEND_ENV)
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_DIR / ".env")
 API_KEY = os.getenv("FINNHUB_API_KEY")
 if not API_KEY:
     raise ValueError(

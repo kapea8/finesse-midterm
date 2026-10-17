@@ -1,9 +1,10 @@
-
 import os
 import mysql.connector
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(PROJECT_DIR / ".env")
 
 
 def get_db_connection():

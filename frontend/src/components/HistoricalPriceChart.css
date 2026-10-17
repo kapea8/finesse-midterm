@@ -1,0 +1,16 @@
+
+.historical-chart {
+  margin: 24px 0;
+}
+
+.chart-description {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 8px 0 20px;
+}
+
+.historical-chart .chart-container {
+  width: 100%;
+  height: 350px;
+  min-width: 0;
+}

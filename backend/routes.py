@@ -1,26 +1,10 @@
-
-import os
-import sys
-import math
 import requests
-from datetime import datetime, timezone
-from pathlib import Path
-from dotenv import load_dotenv
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
 from database import get_db_connection
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
-BACKEND_DIR = Path(__file__).resolve().parent
-PROJECT_DIR = BACKEND_DIR.parent
-ML_DIR = PROJECT_DIR / "ml"
-
-if not ML_DIR.is_dir():
-    raise RuntimeError(f"ML_DIR does not exist: {ML_DIR}")
-
-sys.path.insert(0, str(ML_DIR))
-
-from live_stock_check import get_stock_result
+from stock_monitor_service import run_and_save_stock_check
 
 
 @api.route("/health", methods=["GET"])
@@ -190,81 +174,19 @@ def add_metrics():
 
 @api.route("/stock/<symbol>/run", methods=["POST"])
 def run_stock_inference(symbol):
-    connection = None
-    cursor = None
-
     try:
-        # Fetch quote and run the autoencoder
-        result = get_stock_result(symbol.upper())
-
-        # Create a run record
-        connection = get_db_connection()
-        cursor = connection.cursor()
-
-        cursor.execute(
-            """
-            INSERT INTO runs (name, model_type, status)
-            VALUES (%s, %s, %s)
-            """,
-            (
-                f"{result['symbol']} Stock Anomaly Check",
-                "autoencoder",
-                "completed",
-            ),
-        )
-        run_id = cursor.lastrowid
-
-        # Save numeric results as metrics
-        metrics = {
-            "price": result["price"],
-            "change": result["change"],
-            "percent_change": result["percent_change"],
-            "open": result["open"],
-            "high": result["high"],
-            "low": result["low"],
-            "previous_close": result["previous_close"],
-            "anomaly_score": result["anomaly_score"],
-            "anomaly_threshold": result["anomaly_threshold"],
-            "is_anomaly": int(result["is_anomaly"]),
-        }
-        metrics.update(result["features"])
-
-        for name, value in metrics.items():
-            if not math.isfinite(float(value)):
-                raise ValueError(f"Invalid metric value: {name}")
-
-            cursor.execute(
-                """
-                INSERT INTO metrics (run_id, name, value)
-                VALUES (%s, %s, %s)
-                """,
-                (run_id, name, float(value)),
-            )
-
-        connection.commit()
-
-        # Return the inference result, including its database run ID
-        result["run_id"] = run_id
-        return jsonify(result), 201
+        result, created = run_and_save_stock_check(symbol.upper())
+        return jsonify(result), 201 if created else 200
 
     except requests.RequestException:
-        if connection:
-            connection.rollback()
         return jsonify({"error": "Unable to fetch stock quote."}), 502
 
     except Exception as error:
-        if connection:
-            connection.rollback()
+        current_app.logger.exception("Stock inference/save failed")
         return jsonify({
             "error": "Failed to run and save stock inference.",
             "details": str(error),
         }), 500
-
-    finally:
-        if cursor:
-            cursor.close()
-        if connection and connection.is_connected():
-            connection.close()
 
 
 @api.route("/stock/latest", methods=["GET"])
