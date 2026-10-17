@@ -202,12 +202,9 @@ def get_latest_stock_result():
             """
             SELECT id, name, model_type, status, started_at
             FROM runs
-            WHERE model_type = %s
-              AND name LIKE %s
             ORDER BY started_at DESC, id DESC
             LIMIT 1
             """,
-            ("autoencoder", "%AAPL Stock Anomaly Check"),
         )
         run = cursor.fetchone()
 
