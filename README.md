@@ -58,7 +58,7 @@ npm install
 
 ## 📊 Dataset
 
-- **Source:** [Finnhub Stock API](https://finnhub.io/) [Nasdaq Historical Stock Data](https://www.nasdaq.com/market-activity/stocks/aapl/historical)
+- **Source:** [Finnhub Stock API](https://finnhub.io/), [Nasdaq Historical Stock Data](https://www.nasdaq.com/market-activity/stocks/aapl/historical)
 - **Description:** Apple Inc. (AAPL) stock market data used to identify unusual trading patterns. The model analyzes three features: daily return, intraday price range, and opening price gap.
 - **Data Pipeline:** Stock data is retrieved through Finnhub, processed into the three input features, and scaled before being analyzed by the TensorFlow autoencoder. The application displays the resulting anomaly scores and classifications.
 
@@ -72,12 +72,9 @@ npm install
 ---
 
 ## 📈 Evaluation & Results
-Summary of model performance on the test metrics. For example,
 
 | Metric | Training Set | Test Set |
 | :--- | :--- | :--- |
 | MAE | 0.43 | 0.34 |
-
-*Include any relevant confusion matrices, ROC curves, or training logs in an `assets/` directory and link them here.*
 
 ---
