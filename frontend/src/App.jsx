@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 
@@ -204,6 +203,16 @@ function App() {
     result?.started_at ||
     historyById.get(Number(result?.run_id))?.date;
 
+  const reconstructionErrors = historicalData
+    .map((item) => item.anomalyScore)
+    .filter((value) => Number.isFinite(value));
+
+  const averageReconstructionError =
+    reconstructionErrors.length > 0
+      ? reconstructionErrors.reduce((sum, value) => sum + value, 0) /
+        reconstructionErrors.length
+      : null;
+
   return (
     <main className="dashboard">
       <header className="dashboard-header">
@@ -270,6 +279,10 @@ function App() {
               <MetricCard
                 title="Anomaly Threshold"
                 value={formatNumber(result?.anomaly_threshold, 4)}
+              />
+              <MetricCard
+                title="Average Reconstruction Error"
+                value={formatNumber(averageReconstructionError, 4)}
               />
             </div>
           </section>
