@@ -5,7 +5,7 @@ import MetricCard from "./components/MetricCard";
 import HistoricalPriceChart from "./components/HistoricalPriceChart";
 import { fetchRuns, fetchRunMetrics } from "./lib/api";
 
-const API_BASE = "/api";
+const API_BASE = "127.0.0.1:5000/api";
 const BATCH_SIZE = 20;
 
 function formatNumber(value, digits = 2) {
