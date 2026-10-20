@@ -4,7 +4,7 @@ TensorFlow Web Monitor is a web application designed to identify unusual pattern
 
 ## 👥 Team Members & Contributions
 
-- **Leah Brown (lebro19)** - Documentation & Technical Communication (README Development, Model and Results Explanation, Presentation Design)
+- **Leah Brown (leahbrown19)** - Documentation & Technical Communication (README Development, Model and Results Explanation, Presentation Design)
 - **Kendall Harris (kehar48)** - Backend Development (API Integration, Deployment)
 - **Kaitlyn Pearson (kapea8)** - Full-Stack Development (Dashboard UI, Backend Integration)
 
