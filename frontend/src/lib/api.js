@@ -1,5 +1,5 @@
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = "127.0.0.1:5000/api";
 
 // Fetch all model runs
 export async function fetchRuns() {
