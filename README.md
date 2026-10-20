@@ -12,7 +12,7 @@ TensorFlow Web Monitor is a web application designed to identify unusual pattern
 
 ## 🚀 Live Demo
 
-- **Application URL:** [Insert Link to Live App, e.g., Hugging Face Spaces / Streamlit Sharing / Vercel]
+- **Application URL:** --> ec2-44-222-220-159.compute-1.amazonaws.com
 - *Note: This live demo must be fully functional and accessible during the live project presentation.*
 
 ### 🎥 Project Walkthrough
